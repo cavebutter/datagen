@@ -15,10 +15,18 @@ def random_index(row_count, str_list):
 
 #  Generates a column of numbers from the random lists defined in
 #  generator.py  Row numbers determined by the passed row_count variable
-
 def generate_num_col(row_count, num_list):
     output = num_list[0:row_count]
     return output
+
+# Generate an auto_incrementing index column
+def add_index(row_count):
+    i = 1
+    index = []
+    while i <= row_count:
+        index.append(i)
+        i += 1
+    return index
 
 #  Flattens a list of lists
 def flatten_lol(list_of_lists):
