@@ -1,70 +1,36 @@
 # Program to generate sample data tables
 import random
 import csv
-
-# Functions
-
-def random_index(row_count, str_list):
-    i = 0
-    randomized_list = []
-    while i < row_count:
-        index = random.randint (0,len(str_list)-1)
-        item = str_list[index]
-        randomized_list.append(item)
-        i += 1
-    return randomized_list
-
-def flatten_lol(list_of_lists):
-    flat_list = []
-    for sublist in list_of_lists:
-        for item in sublist:
-            flat_list.append(item)
-    return flat_list
-
-def generate_num_col_1(row_count):
-    num_col_1 = num_list_1[0:row_count]
-    return num_col_1
-
-def generate_num_col_2(row_count):
-    num_col_2 = num_list_2[0:row_count]
-    return num_col_2
-
-def generate_num_col_3(row_count):
-    num_col_3 = num_list_3[0:row_count]
-    return num_col_3
-
-def generate_num_col_4(row_count):
-    num_col_4 = num_list_4[0:row_count]
-    return num_col_4
+import datagen_functions as dg
 
 # Generate string lists from included csv's
 
-with open('animals.csv', newline='') as f:
+with open('data/animals.csv', newline='') as f:
     reader = csv.reader(f, delimiter = ',')
     foo = list(reader)
     animals = foo[0]
 
-with open('flowers.csv', newline='') as f:
+with open('data/flowers.csv', newline='') as f:
     reader = csv.reader(f)
     foo = list(reader)
     flowers = foo[0]
 
-with open('trees.csv', newline='') as f:
+with open('data/trees.csv', newline='') as f:
     reader = csv.reader(f)
     foo = list(reader)
     trees = foo[0]
 
-with open('countries.csv', newline='') as f:
+with open('data/countries.csv', newline='') as f:
     reader = csv.reader(f)
     foo = list(reader)
     countries = foo[0]
 
-with open('dogs.csv', newline='') as f:
+with open('data/dogs.csv', newline='') as f:
     reader = csv.reader(f)
     dogs = list(reader)
          
 
-with open('colors.csv', newline='') as f:
+with open('data/colors.csv', newline='') as f:
     reader = csv.reader(f, delimiter = ",")
     colors = list(reader)
     
@@ -89,20 +55,20 @@ num_num_columns = int(input('How many numeric columns in your table? (Max 4)'))
 row_count = int(input('How many rows of data in your table? '))
 
 # Flatten the lists of lists
-dogs = flatten_lol(dogs)  
-colors = flatten_lol(colors)
+dogs = dg.flatten_lol(dogs)  
+colors = dg.flatten_lol(colors)
 
 # Generate the lists based on row_count
-animals_list = random_index(row_count,animals)
-flowers_list = random_index(row_count,flowers)
-trees_list = random_index(row_count,trees)
-countries_list = random_index(row_count,countries)
-colors_list = random_index(row_count,colors)
-dogs_list = random_index(row_count,dogs)
-num_1 = generate_num_col_1(row_count)
-num_2 = generate_num_col_2(row_count)
-num_3 = generate_num_col_3(row_count)
-num_4 = generate_num_col_4(row_count)
+animals_list = dg.random_index(row_count,animals)
+flowers_list = dg.random_index(row_count,flowers)
+trees_list = dg.random_index(row_count,trees)
+countries_list = dg.random_index(row_count,countries)
+colors_list = dg.random_index(row_count,colors)
+dogs_list = dg.random_index(row_count,dogs)
+num_1 = dg.generate_num_col(row_count,num_list_1)
+num_2 = dg.generate_num_col(row_count,num_list_2)
+num_3 = dg.generate_num_col(row_count,num_list_3)
+num_4 = dg.generate_num_col(row_count,num_list_4)
 
 # Commbined list of generated lists
 master = list(zip(animals_list,colors_list,flowers_list,trees_list,dogs_list,countries_list,num_1,num_2,num_3,num_4))
