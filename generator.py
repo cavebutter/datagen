@@ -50,6 +50,7 @@ num_list_4 = [random.randint(1, 10) for x in range(500)]
 
 # Get information about the table
 table_name = input('What is the name of your table? ')
+include_index = input('Do you want your table to be indexed? (y/n) ')
 num_str_columns = int(input('How many text columns in your table? (Max 4) ')) 
 num_num_columns = int(input('How many numeric columns in your table? (Max 4)'))
 row_count = int(input('How many rows of data in your table? '))
@@ -59,6 +60,10 @@ dogs = dg.flatten_lol(dogs)
 colors = dg.flatten_lol(colors)
 
 # Generate the lists based on row_count
+if include_index == "y":
+    index = dg.add_index(row_count)
+else:
+    index = False
 animals_list = dg.random_index(row_count,animals)
 flowers_list = dg.random_index(row_count,flowers)
 trees_list = dg.random_index(row_count,trees)
@@ -71,13 +76,26 @@ num_3 = dg.generate_num_col(row_count,num_list_3)
 num_4 = dg.generate_num_col(row_count,num_list_4)
 
 # Commbined list of generated lists
-master = list(zip(animals_list,colors_list,flowers_list,trees_list,dogs_list,countries_list,num_1,num_2,num_3,num_4))
+
+# If no index
+if index == False:
+    master = list(zip(animals_list,colors_list,flowers_list,trees_list,dogs_list,countries_list,num_1,num_2,num_3,num_4))
 
 # Output as csv
-with open(table_name + ".csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(['animal', 'color', 'flower', 'tree', 'dog', 'country', 'num1', 'num2', 'num3', 'num4'])
-    writer.writerows(master)
+    with open(table_name + ".csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(['animal', 'color', 'flower', 'tree', 'dog', 'country', 'num1', 'num2', 'num3', 'num4'])
+        writer.writerows(master)
+
+# If yes index
+else:
+    master = list(zip(index,animals_list,colors_list,flowers_list,trees_list,dogs_list,countries_list,num_1,num_2,num_3,num_4))
+
+# Output as csv
+    with open(table_name + ".csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(['ID','animal', 'color', 'flower', 'tree', 'dog', 'country', 'num1', 'num2', 'num3', 'num4'])
+        writer.writerows(master)
 
 # Completion Message
 print("Your sample data is ready")

@@ -19,7 +19,7 @@ def generate_num_col(row_count, num_list):
     output = num_list[0:row_count]
     return output
 
-# Generate an auto_incrementing index column
+#  Generate in index column with row numbers determined by passed row_count
 def add_index(row_count):
     i = 1
     index = []
