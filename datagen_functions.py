@@ -36,14 +36,3 @@ def flatten_lol(list_of_lists):
             flat_list.append(item)
     return flat_list
 
-### Functions to support MySQL Terminal-Like table formatting
-def longest_value(input_list):
-    if isinstance(input_list[1], int):
-        converted_list = (str(w) for w in input_list)
-        longest_value = len(max(converted_list, key=len))
-    else:
-        longest_value = len(max(input_list, key=len))
-    return longest_value
-
-
-
