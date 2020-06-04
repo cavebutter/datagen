@@ -53,16 +53,17 @@ num_list_4 = [random.randint(1, 10) for x in range(500)]
 
 
 # Get information about the table
-col_list = []
-col_headers = []
+col_list = [] # Stores the list of values for each column
+col_headers = [] # Stores the names of the headers for each column
 
 table_name = input('What is the name of your table? ')
 include_index = input('Do you want your table to be indexed? (y/n) ')
 row_count = int(input('How many rows of data in your table? '))
-if include_index == "y":
+if include_index == "y":  # Creates index
     index = dg.add_index(row_count)
     col_list.append(index)
-    col_headers.append('ID')
+    col_headers.append('ID')  # Hard-coded header
+    
 # Routine to determine number and type of columns
 num_columns = int(input('How many columns in your table? (Max 8) '))
 i = 0
@@ -80,8 +81,14 @@ while i < num_columns:
 (9)  Numbers in range 10000-900000
 (10) Numbers in range 1-10
 Enter the number of your choice: """)
+
+#  Pretty primitive error handling, but it seems to work    
+    while item not in ['1','2','3','4','5','6','7','8','9','10']:
+        item = input('Make a better choice.  Please enter a number: ')    
     header = input("What is the name of this column? ")
     col_headers.append(header)
+
+#  There must be a more elegant way to handle this...    
     if item == '1':
         animals_list = dg.random_index(row_count, animals)
         col_list.append(animals_list)
@@ -112,14 +119,8 @@ Enter the number of your choice: """)
     elif item == '10':
         num_4 = dg.generate_num_col(row_count,num_list_4)
         col_list.append(num_4)
-    else:
-        print('Make a better choice')
     
-
-
-
-
-# Commbined list of generated lists
+ # Commbined list of generated lists
 
 
 master = list(zip(*col_list))
@@ -132,15 +133,16 @@ with open('output\\' + table_name + ".csv", "w", newline="") as f:
 
 
 # Completion Message
-print("Your sample data CSV file is ready")
+print("Your sample data CSV file is ready.  You can find it in the Output directory.")
 as_text = input('Would you like the output as formatted text too? (y/n) ')
 
+# Formatting text with PrettyTable
 if as_text == 'y':
     fp = open('output\\' + table_name + ".csv", "r")
     pt = from_csv(fp)
     fp.close()
     with open('output\\' + table_name + ".txt", "w") as f:
         f.write(str(pt))
-    print("txt file is ready")
+    print("Your txt file is ready.  It is in the Output directory")
         
     
