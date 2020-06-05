@@ -1,2 +1,3 @@
 output/*.txt
 output/*.csv
+__pycache__
