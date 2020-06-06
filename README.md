@@ -1,5 +1,9 @@
 # datagen
-This is an application that will create sets of sample data in csv and formatted like a MySQL terminal readout.
-Data is pulled from csv's in the data directory.  Almost all of them from free setas available from data.world
+Several small applications that exist to provide sample data sets for a variety of different purposes.
+generator.py generates any number of random string and numeric data columns and rows via text interface.  Output is csv with an option for .txt output using PrettyTable formatting.
 
-As of the 6/4/2020 commit, there is no error handling.  That's the next step...
+db_generator.py creates multiple tables for a sample database of customers, employees, products, categories, and sales transactions.
+
+db_inserter.py takes a csv and generates MySQL statements to create and/or insert data to a database.
+
+Data in the data directory mostly comes from data.world.
