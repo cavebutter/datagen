@@ -7,9 +7,15 @@ import os
 db_name = input('What is the name of your database? ')
 cust_size = int(input('How many customers in your database? '))
 cust_f_pct = int(input('What percentage of your customers are female? '))
+sales_regions = int(input("How many sales regions in your database? "))
+sales_mgrs = int(input('How many sales managers? '))
+sales_reps = int(input('How many sales reps does each sales manager have? '))
+total_reps = sales_mgrs * sales_reps
 
 # Make Directory of DB files
-os.mkdir('output\\' + db_name)
+output_directory = 'output\\' + db_name
+os.mkdir(output_directory)
+
 
 #  Generate Customer List
 f_names = dg.process_first_names('data\\first_names_f.csv')
@@ -18,7 +24,7 @@ m_names = dg.process_first_names('data\\first_names_m.csv')
 m_freq = dg.process_names_frequencies('data\\first_names_m.csv')
 surnames = dg.process_surnames('data\\Names_2010Census.csv')
 surname_cum_freq = dg.surname_cum_freq('data\\Names_2010Census.csv')
-#surname_cum_freq.pop()
+# surname_cum_freq.pop()
 
 
 # Determine proportion of f/m
@@ -59,13 +65,41 @@ customer_list.sort(key=lambda list: list[3]) # Sort by address to randomize a bi
 # Export Customers to csv and txt
 headers = ['CustID', 'First_Name', 'Last_Name', 'Address', 'City', 'State', 'Zip' ]
 
-with open('output\\' + db_name + '\\customers.csv', 'w', newline='') as f:
+with open(output_directory + '\\customers.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
     writer.writerows(customer_list)
 
-fp = open('output\\customers.csv', 'r')
+fp = open(output_directory + '\\customers.csv', 'r')
 pt = from_csv(fp)
 fp.close()
-with open('output\\customers.txt', 'w') as f:
+with open(output_directory + '\\customers.txt', 'w') as f:
+    f.write(str(pt))
+
+# Sales Managers and Sales Reps
+sales_managers = dg.sales(sales_regions, sales_regions)
+headers = ['First Name', 'Last Name', 'Region']
+with open(output_directory + '\\sales_mgrs.csv', 'w', newline='') as f:
+    writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(headers)
+    writer.writerows(sales_managers)
+
+fp = open(output_directory + '\\sales_mgrs.csv', 'r')
+pt = from_csv(fp)
+fp.close()
+with open(output_directory + '\\sales_mgrs.txt', 'w') as f:
+    f.write(str(pt))
+
+num_reps = sales_regions * sales_reps
+reps = dg.sales(sales_regions, num_reps)
+sales_reps = dg.sales(sales_regions, num_reps)
+with open(output_directory + '\\sales_reps.csv', 'w', newline='') as f:
+    writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(headers)
+    writer.writerows(sales_reps)
+
+fp = open(output_directory + '\\sales_reps.csv', 'r')
+pt = from_csv(fp)
+fp.close()
+with open(output_directory + '\\sales_reps.txt', 'w') as f:
     f.write(str(pt))
