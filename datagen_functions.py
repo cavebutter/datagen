@@ -106,7 +106,6 @@ def sales(sales_regions, reps):
     f_freq = process_names_frequencies('data\\first_names_f.csv')
     m_names = process_first_names('data\\first_names_m.csv')
     m_freq = process_names_frequencies('data\\first_names_m.csv')
-    surnames = process_surnames('data\\Names_2010Census.csv')
     # Create list of 300 names to choose from
     size = 150
     first_names = []
@@ -144,6 +143,10 @@ def sales(sales_regions, reps):
     elif new_sales_regions == 9:
         regions_list = ['Far West', 'Great Lakes', 'Mid South', 'Mid West', 'Mountain West', 'New England', 'Northeast',
                         'Northwest', 'South Central', 'Southeast']
+
+    # The following snippet of code is meant to assign a region to every person created
+    # in the sales function so that the regions are distributed evenly among the entities.
+    # It does this but feels very inelegant.
     regionsCount = len(region_list)
     j = 0
     temp_list = list()
@@ -153,11 +156,9 @@ def sales(sales_regions, reps):
         temp = list(i)
         temp.append(region_list[j])
         temp_list.append(tuple(temp))
-        j = j+1
+        j = j + 1
     selected_sales = temp_list
 
     return selected_sales
 
 
-#mysales = sales(1, 10)
-#print(mysales)
