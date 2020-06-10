@@ -4,6 +4,7 @@ import csv
 from prettytable import from_csv, PrettyTable
 import os
 import shutil
+import sys
 
 db_name = input('What is the name of your database? ')
 cust_size = int(input('How many customers in your database? '))
@@ -14,7 +15,7 @@ total_reps = sales_regions * sales_reps
 start_year = int(input('What is the start year for sales data? '))
 end_year = int(input('What is the end year for sales data? '))
 tx_year = int(input('What is the volume of sales transactions per year? '))
-volume = tx_year * (end_year - start_year+ 1)
+volume = tx_year * (end_year - start_year + 1)
 
 # Make Directory of DB files
 output_directory = 'output\\' + db_name
@@ -118,5 +119,4 @@ with open('output\\' + db_name + '\\transactions.csv', 'w', newline='') as f:
 regions = dg.regions(sales_regions,db_name)
 shutil.copyfile('data\\products.csv', 'output\\' + db_name + '\\products.csv')
 shutil.copyfile('data\\manufacturers.csv', 'output\\' + db_name + '\\manufacturers.csv')
-
 

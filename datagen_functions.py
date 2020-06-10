@@ -198,7 +198,7 @@ def g_sales(volume, start_year, end_year, data_directory):
         tx.append(order_price)
         random_number_of_days = random.randrange(days_between_dates)
         random_date = start_date + datetime.timedelta(days=random_number_of_days)
-        tx_date = random_date.strftime('%m/%d/%Y')
+        tx_date = random_date.strftime('%Y-%m-%d')
         tx.append(tx_date)  # index 7
         generic_sales.append(tx)
         i += 1
@@ -221,4 +221,5 @@ def regions(sales_regions, output_directory):
         writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(header)
         writer.writerows(new_list)
+
 
