@@ -3,3 +3,4 @@ output/*/*.csv
 __pycache__
 .ipynb_checkpoints/
 *.ipynb
+.idea

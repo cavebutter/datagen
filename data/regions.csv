@@ -1,52 +1,52 @@
-State,Region9,Region8,Region7,Region6,Region5,Region4,Region3,Region2,Region1
-AK,Far West,West,West,Pacific,West,West,West,West,USA
-CA,Far West,West,West,Pacific,West,West,West,West,USA
-HI,Far West,West,West,Pacific,West,West,West,West,USA
-NV,Far West,West,West,Rocky Mountain,West,West,West,West,USA
-IL,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,East,East,USA
-IN,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,East,East,USA
-MI,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,East,East,USA
-MN,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,East,East,USA
-OH,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,South,East,USA
-WI,Great Lakes,Great Lakes,Midwest,Midwest,Midwest,Midwest,East,East,USA
-DE,Mid South,Mid South,Mid-Atlantic,Northeast,Southeast,South,South,East,USA
-DC,Mid South,Mid South,Mid-Atlantic,Southeast,Southeast,South,South,East,USA
-KY,Mid South,Mid South,South East,Southeast,Southeast,South,South,East,USA
-MD,Mid South,Mid South,Mid-Atlantic,Southeast,Southeast,South,South,East,USA
-NC,Mid South,Mid South,South East,Southeast,Southeast,South,South,East,USA
-TN,Mid South,Mid South,South East,Southeast,Southeast,South,South,East,USA
-VA,Mid South,Mid South,Mid-Atlantic,Southeast,Southeast,South,South,East,USA
-WV,Mid South,Mid South,Mid-Atlantic,Southeast,Southeast,South,South,East,USA
-IA,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,West,East,USA
-KS,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,West,West,USA
-MO,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,South,East,USA
-NE,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,West,West,USA
-ND,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,West,West,USA
-SD,Mid West,Mid West,Midwest,Midwest,Midwest,Midwest,West,West,USA
-AZ,Mountain West,West,South West,Southwest,Southwest,West,West,West,USA
-CO,Mountain West,West,South West,Rocky Mountain,West,West,West,West,USA
-ID,Mountain West,Northwest,North West,Rocky Mountain,West,West,West,West,USA
-MT,Mountain West,Northwest,North West,Rocky Mountain,West,West,West,West,USA
-NM,Mountain West,West,South West,Southwest,Southwest,West,West,West,USA
-UT,Mountain West,West,South West,Rocky Mountain,West,West,West,West,USA
-WY,Mountain West,West,South West,Rocky Mountain,West,West,West,West,USA
-CT,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-ME,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-MA,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-NH,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-RI,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-VT,New England,New England,North East,Northeast,Northeast,Northeast,East,East,USA
-NJ,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast,Northeast,East,East,USA
-NY,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast,Northeast,East,East,USA
-PA,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast,Northeast,East,East,USA
-OR,Northwest,Northwest,North West,Pacific,West,West,West,West,USA
-WA,Northwest,Northwest,North West,Pacific,West,West,West,West,USA
-AR,South Central,South Central,South East,Southeast,Southeast,South,South,East,USA
-LA,South Central,South Central,South East,Southeast,Southeast,South,South,East,USA
-OK,South Central,South Central,South West,Southwest,Southwest,South,South,West,USA
-TX,South Central,South Central,South West,Southwest,Southwest,South,South,West,USA
-AL,Southeast,Southeast,South East,Southeast,Southeast,South,South,East,USA
-FL,Southeast,Southeast,South East,Southeast,Southeast,South,South,East,USA
-GA,Southeast,Southeast,South East,Southeast,Southeast,South,South,East,USA
-MS,Southeast,Southeast,South East,Southeast,Southeast,South,South,East,USA
-SC,Southeast,Southeast,South East,Southeast,Southeast,South,South,East,USA
+State,Region1,Region2,Region3,Region4,Region5,Region6,Region7,Region8,Region9
+AK,USA,West,West,West,West,Pacific,West,West,Far West
+CA,USA,West,West,West,West,Pacific,West,West,Far West
+HI,USA,West,West,West,West,Pacific,West,West,Far West
+NV,USA,West,West,West,West,Rocky Mountain,West,West,Far West
+IL,USA,East,East,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+IN,USA,East,East,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+MI,USA,East,East,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+MN,USA,East,East,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+OH,USA,East,South,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+WI,USA,East,East,Midwest,Midwest,Midwest,Midwest,Great Lakes,Great Lakes
+DE,USA,East,South,South,Southeast,Northeast,Mid-Atlantic,Mid South,Mid South
+DC,USA,East,South,South,Southeast,Southeast,Mid-Atlantic,Mid South,Mid South
+KY,USA,East,South,South,Southeast,Southeast,South East,Mid South,Mid South
+MD,USA,East,South,South,Southeast,Southeast,Mid-Atlantic,Mid South,Mid South
+NC,USA,East,South,South,Southeast,Southeast,South East,Mid South,Mid South
+TN,USA,East,South,South,Southeast,Southeast,South East,Mid South,Mid South
+VA,USA,East,South,South,Southeast,Southeast,Mid-Atlantic,Mid South,Mid South
+WV,USA,East,South,South,Southeast,Southeast,Mid-Atlantic,Mid South,Mid South
+IA,USA,East,West,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+KS,USA,West,West,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+MO,USA,East,South,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+NE,USA,West,West,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+ND,USA,West,West,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+SD,USA,West,West,Midwest,Midwest,Midwest,Midwest,Mid West,Mid West
+AZ,USA,West,West,West,Southwest,Southwest,South West,West,Mountain West
+CO,USA,West,West,West,West,Rocky Mountain,South West,West,Mountain West
+ID,USA,West,West,West,West,Rocky Mountain,North West,Northwest,Mountain West
+MT,USA,West,West,West,West,Rocky Mountain,North West,Northwest,Mountain West
+NM,USA,West,West,West,Southwest,Southwest,South West,West,Mountain West
+UT,USA,West,West,West,West,Rocky Mountain,South West,West,Mountain West
+WY,USA,West,West,West,West,Rocky Mountain,South West,West,Mountain West
+CT,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+ME,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+MA,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+NH,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+RI,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+VT,USA,East,East,Northeast,Northeast,Northeast,North East,New England,New England
+NJ,USA,East,East,Northeast,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast
+NY,USA,East,East,Northeast,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast
+PA,USA,East,East,Northeast,Northeast,Northeast,Mid-Atlantic,Northeast,Northeast
+OR,USA,West,West,West,West,Pacific,North West,Northwest,Northwest
+WA,USA,West,West,West,West,Pacific,North West,Northwest,Northwest
+AR,USA,East,South,South,Southeast,Southeast,South East,South Central,South Central
+LA,USA,East,South,South,Southeast,Southeast,South East,South Central,South Central
+OK,USA,West,South,South,Southwest,Southwest,South West,South Central,South Central
+TX,USA,West,South,South,Southwest,Southwest,South West,South Central,South Central
+AL,USA,East,South,South,Southeast,Southeast,South East,Southeast,Southeast
+FL,USA,East,South,South,Southeast,Southeast,South East,Southeast,Southeast
+GA,USA,East,South,South,Southeast,Southeast,South East,Southeast,Southeast
+MS,USA,East,South,South,Southeast,Southeast,South East,Southeast,Southeast
+SC,USA,East,South,South,Southeast,Southeast,South East,Southeast,Southeast

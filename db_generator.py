@@ -3,14 +3,18 @@ import random
 import csv
 from prettytable import from_csv, PrettyTable
 import os
+import shutil
 
 db_name = input('What is the name of your database? ')
 cust_size = int(input('How many customers in your database? '))
 cust_f_pct = int(input('What percentage of your customers are female? '))
 sales_regions = int(input("How many sales regions in your database? "))
-sales_mgrs = int(input('How many sales managers? '))
 sales_reps = int(input('How many sales reps does each sales manager have? '))
-total_reps = sales_mgrs * sales_reps
+total_reps = sales_regions * sales_reps
+start_year = int(input('What is the start year for sales data? '))
+end_year = int(input('What is the end year for sales data? '))
+tx_year = int(input('What is the volume of sales transactions per year? '))
+volume = tx_year * (end_year - start_year+ 1)
 
 # Make Directory of DB files
 output_directory = 'output\\' + db_name
@@ -78,7 +82,7 @@ with open(output_directory + '\\customers.txt', 'w') as f:
 
 # Sales Managers and Sales Reps
 sales_managers = dg.sales(sales_regions, sales_regions)
-headers = ['First Name', 'Last Name', 'Region']
+headers = ['Rep_ID', 'First Name', 'Last Name', 'Region']
 with open(output_directory + '\\sales_mgrs.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
@@ -103,3 +107,16 @@ pt = from_csv(fp)
 fp.close()
 with open(output_directory + '\\sales_reps.txt', 'w') as f:
     f.write(str(pt))
+
+sales_data = dg.g_sales(volume, start_year, end_year, db_name)
+headers = ['tx_id', 'cust_id', 'rep_id', 'prod_id', 'price', 'qty', 'cost', 'tx_date']
+with open('output\\' + db_name + '\\transactions.csv', 'w', newline='') as f:
+    writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(headers)
+    writer.writerows(sales_data)
+
+regions = dg.regions(sales_regions,db_name)
+shutil.copyfile('data\\products.csv', 'output\\' + db_name + '\\products.csv')
+shutil.copyfile('data\\manufacturers.csv', 'output\\' + db_name + '\\manufacturers.csv')
+
+
