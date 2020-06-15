@@ -2,6 +2,7 @@
 import random
 import csv
 import datetime
+from pathlib import Path
 
 
 #  Generates a random subset of the referenced list of strings.  Number
@@ -102,11 +103,12 @@ def create_people_surname(size):
 
 
 # create a list of 300 names to build a sales force from
-def sales(sales_regions, reps, f_file, m_file, s_file):
-    f_names = process_first_names(f_file)
-    f_freq = process_names_frequencies(f_file)
-    m_names = process_first_names(m_file)
-    m_freq = process_names_frequencies(m_file)
+def sales(sales_regions, reps):
+    data_dir = Path.cwd() / 'data'
+    f_names = process_first_names(data_dir / 'first_names_f.csv')
+    f_freq = process_names_frequencies(data_dir / 'first_names_f.csv')
+    m_names = process_first_names(data_dir / 'first_names_m.csv')
+    m_freq = process_names_frequencies(data_dir / 'first_names_m.csv')
     # Create list of 300 names to choose from
     size = 150
     first_names = []
@@ -116,8 +118,8 @@ def sales(sales_regions, reps, f_file, m_file, s_file):
         first_names.append(name)
     for name in f_first_name:
         first_names.append(name)
-    surnames = process_surnames(s_file)
-    sname_cum_freq = surname_cum_freq(s_file)
+    surnames = process_surnames(data_dir / 'Names_2010Census.csv')
+    sname_cum_freq = surname_cum_freq(data_dir / 'Names_2010Census.csv')
     surnames = random.choices(surnames, cum_weights=sname_cum_freq, k=size * 2)
 
     # Select random entries from big list
@@ -156,14 +158,16 @@ def sales(sales_regions, reps, f_file, m_file, s_file):
 # Generate Generic Sales - a single line item for each sale.
 # Not invoices, rather a list of tx_id, cust_id, product_id, sales_rep,
 # date, qty, unit_price, order_total
-def g_sales(volume, start_year, end_year, data_directory):
-    with open('data\\products.csv', 'r') as f:
+def g_sales(volume, start_year, end_year, db_name):
+    data_directory = Path.cwd() / 'data'
+    output_directory = Path.cwd() / 'output' / db_name
+    with open(data_directory / 'products.csv', 'r') as f:
         reader = csv.reader(f)
         products = list(reader)
-    with open('output\\' + data_directory + '\\customers.csv', 'r') as f:
+    with open(output_directory / 'customers.csv', 'r') as f:
         reader = csv.reader(f)
         customers = list(reader)
-    with open('output\\' + data_directory + '\\sales_reps.csv', 'r') as f:
+    with open(output_directory / 'sales_reps.csv', 'r') as f:
         reader = csv.reader(f)
         sales_reps = list(reader)
     generic_sales = []  # List to hold all transactions
@@ -208,8 +212,10 @@ def g_sales(volume, start_year, end_year, data_directory):
 
 
 # Create a regions.csv that matches the regions in the db
-def regions(sales_regions, output_directory):
-    with open('data\\regions.csv', 'r') as f:
+def regions(sales_regions, db_name):
+    output_dir = Path.cwd() / 'output' / db_name
+    data_dir = Path.cwd() / 'data'
+    with open(data_dir / 'regions.csv', 'r') as f:
         reader = csv.reader(f)
         full_list = list(reader)
     states = [item[0] for item in full_list]
@@ -217,7 +223,7 @@ def regions(sales_regions, output_directory):
     region_column = [item[col] for item in full_list]
     new_list = list(zip(states, region_column))
     header = ['state', 'region']
-    with open('output\\' + output_directory + '\\regions.csv', 'w', newline='') as f:
+    with open(output_dir / 'regions.csv', 'w', newline='') as f:
         writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(header)
         writer.writerows(new_list)

@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 import csv
+from pathlib import Path
 
 config = input("Use 'localhost', 'root', 'root'? (y/n) ")
 if config == 'y':
@@ -82,6 +83,7 @@ INDEX tx1 (`cust_id`),
 INDEX tx2 (`rep_id`),
 INDEX tx3 (`prod_id`)
 )"""
+data_dir = Path.cwd() / 'output' / db_name
 
 table_list = [manufacturers, products, customers, regions, sales_mgrs, sales_reps, transactions]
 mydb = mysql.connector.connect(host=host,user=user,password=password)
@@ -97,17 +99,18 @@ mycursor.execute('USE ' + db_name)
 for table in table_list:
     mycursor.execute(table)
 
-with open('output\\' + db_name + '\\customers.csv', 'r') as f:
+with open(data_dir / 'customers.csv', 'r') as f:
     reader = csv.reader(f)
     customers = list(reader)
     customers.pop(0)
 
-ins_customer = "INSERT INTO customers (cust_id, first_name, last_name, address, city, state, zip) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+ins_customer = "INSERT INTO customers (cust_id, first_name, last_name, address, city, state, zip) VALUES (%s, %s, %s, " \
+               "%s, %s, %s, %s) "
 
 mycursor.executemany(ins_customer, customers)
 mydb.commit()
 
-with open('output\\' + db_name + '\\manufacturers.csv', 'r') as f:
+with open(data_dir / 'manufacturers.csv', 'r') as f:
     reader = csv.reader(f)
     manufacturers = list(reader)
     manufacturers.pop(0)
@@ -117,17 +120,18 @@ ins_manufacturer = "INSERT INTO manufacturers (manufacturerID, manufacturer) VAL
 mycursor.executemany(ins_manufacturer, manufacturers)
 mydb.commit()
 
-with open('output\\' + db_name + '\\products.csv', 'r') as f:
+with open(data_dir / 'products.csv', 'r') as f:
     reader = csv.reader(f)
     products = list(reader)
     products.pop(0)
 
-ins_products = "INSERT INTO products (category, currency, manufacturerID, price, product, productID, segment) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+ins_products = "INSERT INTO products (category, currency, manufacturerID, price, product, productID, segment) VALUES " \
+               "(%s, %s, %s, %s, %s, %s, %s) "
 
 mycursor.executemany(ins_products, products)
 mydb.commit()
 
-with open('output\\' + db_name + '\\regions.csv', 'r') as f:
+with open(data_dir / 'regions.csv', 'r') as f:
     reader = csv.reader(f)
     regions = list(reader)
     regions.pop(0)
@@ -138,7 +142,7 @@ ins_regions = "INSERT INTO regions (state, region) VALUES (%s, %s)"
 mycursor.executemany(ins_regions, regions)
 mydb.commit()
 
-with open('output\\' + db_name + '\\sales_mgrs.csv', 'r') as f:
+with open(data_dir / 'sales_mgrs.csv', 'r') as f:
     reader = csv.reader(f)
     sales_mgrs = list(reader)
     sales_mgrs.pop(0)
@@ -148,7 +152,7 @@ ins_mgr = "INSERT INTO sales_mgrs (mgr_id, first_name, last_name, region) VALUES
 mycursor.executemany(ins_mgr, sales_mgrs)
 mydb.commit()
 
-with open('output\\' + db_name + '\\sales_reps.csv', 'r') as f:
+with open(data_dir / 'sales_reps.csv', 'r') as f:
     reader = csv.reader(f)
     sales_reps = list(reader)
     sales_reps.pop(0)
@@ -158,12 +162,13 @@ ins_rep = "INSERT INTO sales_reps (rep_id, first_name, last_name, region) VALUES
 mycursor.executemany(ins_rep, sales_reps)
 mydb.commit()
 
-with open('output\\' + db_name + '\\transactions.csv', 'r') as f:
+with open(data_dir / 'transactions.csv', 'r') as f:
     reader = csv.reader(f)
     tx = list(reader)
     tx.pop(0)
 
-ins_tx = "INSERT INTO transactions (tx_id, cust_id, rep_id, prod_id, price, qty, cost, tx_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+ins_tx = "INSERT INTO transactions (tx_id, cust_id, rep_id, prod_id, price, qty, cost, tx_date) VALUES (%s, %s, %s, " \
+         "%s, %s, %s, %s, %s) "
 
 mycursor.executemany(ins_tx, tx)
 mydb.commit()

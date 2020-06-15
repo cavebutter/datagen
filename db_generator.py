@@ -20,7 +20,7 @@ volume = tx_year * (end_year - start_year + 1)
 # Make Directory of DB files
 output_directory = Path.cwd() / 'output' / db_name
 os.mkdir(output_directory)
-outpt_dir = Path
+data_dir = Path.cwd() / 'data'
 
 # Data Paths
 f_namepath = Path.cwd() / 'data' / 'first_names_f.csv'
@@ -31,18 +31,18 @@ addresses = Path.cwd() / 'data' / 'fake_addresses_3.csv'
 
 
 #  Generate Customer List
-f_names = dg.process_first_names(f_namepath)
-f_freq = dg.process_names_frequencies(f_namepath)
-m_names = dg.process_first_names(m_namepath)
-m_freq = dg.process_names_frequencies(m_namepath)
-surnames = dg.process_surnames(s_namepath)
-surname_cum_freq = dg.surname_cum_freq(s_namepath)
+f_names = dg.process_first_names(data_dir / 'first_names_f.csv')
+f_freq = dg.process_names_frequencies(data_dir / 'first_names_f.csv')
+m_names = dg.process_first_names(data_dir / 'first_names_m.csv')
+m_freq = dg.process_names_frequencies(data_dir / 'first_names_m.csv')
+surnames = dg.process_surnames(data_dir / 'Names_2010Census.csv')
+surname_cum_freq = dg.surname_cum_freq(data_dir / 'Names_2010Census.csv')
 # surname_cum_freq.pop()
 
 
 # Determine proportion of f/m
 size_f = int(round(cust_size * (cust_f_pct / 100),0))
-size_m = int(round(ssss cust_size * (1-(cust_f_pct / 100)),0))
+size_m = int(round(cust_size * (1-(cust_f_pct / 100)),0))
 
 # Choose first names
 first_names = []
@@ -57,7 +57,7 @@ for name in f_first_name:
 surnames = random.choices(surnames, cum_weights = surname_cum_freq, k = cust_size)
 
 # Choose addresses
-with open(addresses) as f:
+with open(data_dir / 'fake_addresses_3.csv') as f:
     reader=csv.reader(f)
     addresses = list(reader)
 del addresses[0]
@@ -76,58 +76,58 @@ customer_list = list(zip(index,first_names,surnames,street_address,city,state,zi
 customer_list.sort(key=lambda list: list[3]) # Sort by address to randomize a bit more
 
 # Export Customers to csv and txt
-os.chdir(output_directory)
-headers = ['CustID', 'First_Name', 'Last_Name', 'Address', 'City', 'State', 'Zip' ]
 
-with open('customers.csv', 'w', newline='') as f:
+headers = ['CustID', 'First_Name', 'Last_Name', 'Address', 'City', 'State', 'Zip']
+
+with open(output_directory / 'customers.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
     writer.writerows(customer_list)
 
-fp = open('customers.csv', 'r')
+fp = open(output_directory / 'customers.csv', 'r')
 pt = from_csv(fp)
 fp.close()
-with open('customers.txt', 'w') as f:
+with open(output_directory / 'customers.txt', 'w') as f:
     f.write(str(pt))
 
 # Sales Managers and Sales Reps
-sales_managers = dg.sales(sales_regions, sales_regions,f_namepath, m_namepath, s_namepath)
+sales_managers = dg.sales(sales_regions, sales_regions)
 headers = ['Rep_ID', 'First Name', 'Last Name', 'Region']
-with open('sales_mgrs.csv', 'w', newline='') as f:
+with open(output_directory / 'sales_mgrs.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
     writer.writerows(sales_managers)
 
-fp = open('sales_mgrs.csv', 'r')
+fp = open(output_directory / 'sales_mgrs.csv', 'r')
 pt = from_csv(fp)
 fp.close()
-with open('sales_mgrs.txt', 'w') as f:
+with open(output_directory / 'sales_mgrs.txt', 'w') as f:
     f.write(str(pt))
 
 num_reps = sales_regions * sales_reps
 reps = dg.sales(sales_regions, num_reps)
 sales_reps = dg.sales(sales_regions, num_reps)
-with open('sales_reps.csv', 'w', newline='') as f:
+with open(output_directory / 'sales_reps.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
     writer.writerows(sales_reps)
 
-fp = open('sales_reps.csv', 'r')
+fp = open(output_directory / 'sales_reps.csv', 'r')
 pt = from_csv(fp)
 fp.close()
-with open('sales_reps.txt', 'w') as f:
+with open(output_directory / 'sales_reps.txt', 'w') as f:
     f.write(str(pt))
 
 sales_data = dg.g_sales(volume, start_year, end_year, db_name)
 headers = ['tx_id', 'cust_id', 'rep_id', 'prod_id', 'price', 'qty', 'cost', 'tx_date']
-with open('transactions.csv', 'w', newline='') as f:
+with open(output_directory / 'transactions.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(headers)
     writer.writerows(sales_data)
 
 regions = dg.regions(sales_regions,db_name)
-product_data_location = Path.cwd().parent.parent / 'data' / 'products.csv'
-man_data_location = Path.cwd().parent.parent / 'data' / 'manufacturers.csv'
-shutil.copyfile(product_data_location, 'products.csv')
-shutil.copyfile(man_data_location, 'manufacturers.csv')
+#product_data_location = Path.cwd().parent.parent / 'data' / 'products.csv'
+#man_data_location = Path.cwd().parent.parent / 'data' / 'manufacturers.csv'
+shutil.copyfile(data_dir / 'products.csv', output_directory / 'products.csv')
+shutil.copyfile(data_dir / 'manufacturers.csv', output_directory / 'manufacturers.csv')
 
