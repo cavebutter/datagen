@@ -102,11 +102,11 @@ def create_people_surname(size):
 
 
 # create a list of 300 names to build a sales force from
-def sales(sales_regions, reps):
-    f_names = process_first_names('data\\first_names_f.csv')
-    f_freq = process_names_frequencies('data\\first_names_f.csv')
-    m_names = process_first_names('data\\first_names_m.csv')
-    m_freq = process_names_frequencies('data\\first_names_m.csv')
+def sales(sales_regions, reps, f_file, m_file, s_file):
+    f_names = process_first_names(f_file)
+    f_freq = process_names_frequencies(f_file)
+    m_names = process_first_names(m_file)
+    m_freq = process_names_frequencies(m_file)
     # Create list of 300 names to choose from
     size = 150
     first_names = []
@@ -116,8 +116,8 @@ def sales(sales_regions, reps):
         first_names.append(name)
     for name in f_first_name:
         first_names.append(name)
-    surnames = process_surnames('data\\Names_2010Census.csv')
-    sname_cum_freq = surname_cum_freq('data\\Names_2010Census.csv')
+    surnames = process_surnames(s_file)
+    sname_cum_freq = surname_cum_freq(s_file)
     surnames = random.choices(surnames, cum_weights=sname_cum_freq, k=size * 2)
 
     # Select random entries from big list
