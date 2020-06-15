@@ -22,14 +22,6 @@ output_directory = Path.cwd() / 'output' / db_name
 os.mkdir(output_directory)
 data_dir = Path.cwd() / 'data'
 
-# Data Paths
-f_namepath = Path.cwd() / 'data' / 'first_names_f.csv'
-m_namepath = Path.cwd() / 'data' / 'first_names_m.csv'
-s_namepath = Path.cwd() / 'data' / 'Names_2010Census.csv'
-addresses = Path.cwd() / 'data' / 'fake_addresses_3.csv'
-
-
-
 #  Generate Customer List
 f_names = dg.process_first_names(data_dir / 'first_names_f.csv')
 f_freq = dg.process_names_frequencies(data_dir / 'first_names_f.csv')
@@ -126,8 +118,7 @@ with open(output_directory / 'transactions.csv', 'w', newline='') as f:
     writer.writerows(sales_data)
 
 regions = dg.regions(sales_regions,db_name)
-#product_data_location = Path.cwd().parent.parent / 'data' / 'products.csv'
-#man_data_location = Path.cwd().parent.parent / 'data' / 'manufacturers.csv'
+
 shutil.copyfile(data_dir / 'products.csv', output_directory / 'products.csv')
 shutil.copyfile(data_dir / 'manufacturers.csv', output_directory / 'manufacturers.csv')
 
